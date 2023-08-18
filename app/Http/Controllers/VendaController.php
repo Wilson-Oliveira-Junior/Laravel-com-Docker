@@ -20,7 +20,7 @@ class VendaController extends Controller
     {
         $pesquisar = $request->pesquisar;
         $findVendas = $this->venda->getVendasPesquisarIndex(search: $pesquisar ?? '');
-        return view('pages.venda.paginacao',compact('findVendas') );
+        return view('pages.vendas.paginacao',compact('findVendas') );
     }
 
     public function delete(Request $request)

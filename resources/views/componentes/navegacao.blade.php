@@ -2,7 +2,7 @@
     <ul class="nav flex-column">
         <li class="nav-item">
             <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page"
-                href="{{ route('index')}}">
+                href="#">
                 <svg class="bi">
                     <use xlink:href="#house-fill" />
                 </svg>
@@ -10,7 +10,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="{{route('vendas.index')}}">
+            <a class="nav-link d-flex align-items-center gap-2" href="{{route('venda.index')}}">
                 <svg class="bi">
                     <use xlink:href="#file-earmark" />
                 </svg>
