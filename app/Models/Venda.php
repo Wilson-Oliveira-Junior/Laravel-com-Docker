@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Venda extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'numero_da_venda',
         'produto_id',
@@ -16,22 +16,21 @@ class Venda extends Model
     ];
 
     public function produto(){
-        return $this->belongsTo(Produto::class);
+        return $this->BelongsTo(Produto::class);
     }
-
     public function cliente(){
-        return $this->belongsTo(Produto::class);
+        return $this->BelongsTo(Cliente::class);
     }
 
-    public function getVendasPesquisarIndex(string $search = '')
-    {
+    public function getVendasPesquisarIndex(string $search=''){
         $venda = $this->where(function($query) use ($search){
+
             if($search){
                 $query->where('numero_da_venda', $search);
                 $query->orWhere('numero_da_venda', 'LIKE', "%{$search}%");
+
             }
         })->get();
-
         return $venda;
     }
 }

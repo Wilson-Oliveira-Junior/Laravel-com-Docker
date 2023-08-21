@@ -22,7 +22,6 @@ class Produto extends Model
                 $query->orWhere('nome', 'LIKE', "%{$search}%");
             }
         })->get();
-
         return $produto;
     }
 }
