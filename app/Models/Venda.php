@@ -4,22 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Venda extends Model
 {
     use HasFactory;
     protected $fillable = [
         'numero_da_venda',
-        'produto_id',
+        'produtos_id',
         'cliente_id',
     ];
 
     public function produto(){
-        return $this->BelongsTo(Produto::class);
+        return $this->belongsTo(Produto::class);
     }
     public function cliente(){
-        return $this->BelongsTo(Cliente::class);
+        return $this->belongsTo(Cliente::class);
     }
 
     public function getVendasPesquisarIndex(string $search=''){

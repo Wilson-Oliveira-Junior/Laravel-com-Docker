@@ -18,9 +18,8 @@ class FormRequestVenda extends FormRequest
         $request = [];
         if ($this->method() == 'POST' || $this->method() == "PUT") {
             $request =  [
-                'produto_id' => 'required',
+                'produtos_id' => 'required',
                 'cliente_id' => 'required'
-
             ];
         }
         return $request;
