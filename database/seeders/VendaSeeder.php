@@ -21,7 +21,7 @@ class VendaSeeder extends Seeder
         Venda::create(
             [
                 'numero_da_venda' => 2,
-                'produtos_id'=> 2,
+                'produtos_id'=> 3,
                 'cliente_id'=> 1
             ]
         );

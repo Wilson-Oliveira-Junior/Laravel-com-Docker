@@ -31,7 +31,7 @@
                         @foreach ($findVendas as $venda)
                             <tr>
                                 <td>{{ $venda->numero_da_venda }}</td>
-                                <td>{{ $venda->produto}}</td>
+                                <td>{{ $venda->produto->nome}}</td>
                                 <td>{{ $venda->cliente->nome }}</td>
                                 <td>
                                     {{-- <a href="{{ route('enviaComprovantePorEmail.venda', $venda->id) }}"
