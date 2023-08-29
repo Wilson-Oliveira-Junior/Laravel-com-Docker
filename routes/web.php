@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+
+
+Route::prefix('dashboard')->group(function(){
+    Route::get('/', [VendaController::class, 'index'])->name('dashboard.index');
 });
 
 // faz agrupamento de rotas tudo que for: /produtos/%
