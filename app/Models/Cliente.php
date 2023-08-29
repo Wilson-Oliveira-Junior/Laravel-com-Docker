@@ -17,15 +17,16 @@ class Cliente extends Model
         'cep',
         'bairro',
     ];
-    public function getClientesPesquisarIndex(string $search=''){
-        $cliente = $this->where(function($query) use ($search){
 
-            if($search){
+    public function getClientesPesquisarIndex(string $search = '')
+    {
+        $clientes = $this->where(function ($query) use ($search) {
+            if ($search) {
                 $query->where('nome', $search);
                 $query->orWhere('nome', 'LIKE', "%{$search}%");
-
             }
         })->get();
-        return $cliente;
+
+        return $clientes;
     }
 }

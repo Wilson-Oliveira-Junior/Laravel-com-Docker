@@ -48,7 +48,7 @@ class RequirePassword
      * Specify the redirect route and timeout for the middleware.
      *
      * @param  string|null  $redirectToRoute
-     * @param  string|int|null  $passwordTimeoutSeconds
+     * @param  string|null  $passwordTimeoutSeconds
      * @return string
      *
      * @named-arguments-supported

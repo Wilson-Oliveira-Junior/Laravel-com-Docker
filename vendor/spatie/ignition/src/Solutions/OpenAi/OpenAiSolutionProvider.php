@@ -18,25 +18,6 @@ class OpenAiSolutionProvider implements HasSolutionsForThrowable
         $this->cache ??= new DummyCache();
     }
 
-    public function canSolve(Throwable $throwable): bool
-    {
-        return true;
-    }
-
-    public function getSolutions(Throwable $throwable): array
-    {
-        return [
-            new OpenAiSolution(
-                $throwable,
-                $this->openAiKey,
-                $this->cache,
-                $this->cacheTtlInSeconds,
-                $this->applicationType,
-                $this->applicationPath,
-            ),
-        ];
-    }
-
     public function applicationType(string $applicationType): self
     {
         $this->applicationType = $applicationType;
@@ -58,5 +39,24 @@ class OpenAiSolutionProvider implements HasSolutionsForThrowable
         $this->cacheTtlInSeconds = $cacheTtlInSeconds;
 
         return $this;
+    }
+
+    public function canSolve(Throwable $throwable): bool
+    {
+        return true;
+    }
+
+    public function getSolutions(Throwable $throwable): array
+    {
+        return [
+            new OpenAiSolution(
+                $throwable,
+                $this->openAiKey,
+                $this->cache,
+                $this->cacheTtlInSeconds,
+                $this->applicationType,
+                $this->applicationPath,
+            ),
+        ];
     }
 }

@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Mail;
 
 class VendaController extends Controller
 {
-    private $venda;
     public function __construct(Venda $venda)
     {
         $this->venda = $venda;
@@ -28,12 +27,12 @@ class VendaController extends Controller
     }
 
 
-    public function cadastrarVenda(FormRequestVenda $request)
+    public function cadastrarVendas(FormRequestVenda $request)
     {
         $findNumeracao = Venda::max('numero_da_venda') + 1;
         $findProduto =  Produto::all();
         $findCliente =  Cliente::all();
-        
+
         if ($request->method() == "POST") {
             // cria os dados
             $data = $request->all();

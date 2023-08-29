@@ -362,10 +362,6 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
      */
     public function except($keys)
     {
-        if (is_null($keys)) {
-            return new static($this->items);
-        }
-
         if ($keys instanceof Enumerable) {
             $keys = $keys->all();
         } elseif (! is_array($keys)) {
@@ -378,7 +374,7 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Run a filter over each of the items.
      *
-     * @param  (callable(TValue, TKey): bool)|null  $callback
+     * @param (callable(TValue, TKey): bool)|null  $callback
      * @return static
      */
     public function filter(callable $callback = null)
@@ -428,13 +424,12 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
     /**
      * Remove an item from the collection by key.
      *
-     * \Illuminate\Contracts\Support\Arrayable<array-key, TValue>|iterable<array-key, TKey>|TKey  $keys
-     *
+     * @param  TKey|array<array-key, TKey>  $keys
      * @return $this
      */
     public function forget($keys)
     {
-        foreach ($this->getArrayableItems($keys) as $key) {
+        foreach ((array) $keys as $key) {
             $this->offsetUnset($key);
         }
 
@@ -508,7 +503,6 @@ class Collection implements ArrayAccess, CanBeEscapedWhenCastToString, Enumerabl
             foreach ($groupKeys as $groupKey) {
                 $groupKey = match (true) {
                     is_bool($groupKey) => (int) $groupKey,
-                    $groupKey instanceof \BackedEnum => $groupKey->value,
                     $groupKey instanceof \Stringable => (string) $groupKey,
                     default => $groupKey,
                 };

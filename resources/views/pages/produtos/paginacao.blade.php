@@ -1,21 +1,21 @@
+{{-- Extends da Index --}}
 @extends('index')
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Produtos</h1>
     </div>
-
     <div>
-        <form action="{{ route('produto.index') }}" method="GET">
+        <form action="{{ route('produto.index') }}" method="get">
             <input type="text" name="pesquisar" placeholder="Digite o nome" />
-            <button class="btn btn-secondary"> Pesquisar </button>
+            <button> Pesquisar </button>
             <a type="button" href="{{ route('cadastrar.produto') }}" class="btn btn-success float-end">
                 Incluir Produto
             </a>
         </form>
-        <div class="table-responsive small mt-4">
+        <div class="table-responsive mt-4">
             @if ($findProduto->isEmpty())
-                <p>Não existe dados</p>
+                <p> Não existe dados </p>
             @else
                 <table class="table table-striped table-sm">
                     <thead>
@@ -34,8 +34,9 @@
                                     <a href="{{ route('atualizar.produto', $produto->id) }}" class="btn btn-light btn-sm">
                                         Editar
                                     </a>
+
                                     <meta name='csrf-token' content=" {{ csrf_token() }}" />
-                                    <a onclick="deleteRegistroPOaginacao('{{ route('produto.delete') }}',{{ $produto->id }})"
+                                    <a onclick="deleteRegistroPaginacao( '{{ route('produto.delete') }} ', {{ $produto->id }}  )"
                                         class="btn btn-danger btn-sm">
                                         Excluir
                                     </a>
@@ -46,5 +47,6 @@
                 </table>
             @endif
         </div>
+
     </div>
 @endsection

@@ -361,15 +361,17 @@ class PendingProcess
 
         if (is_string($result) || is_array($result)) {
             return (new FakeProcessResult(output: $result))->withCommand($command);
+        } elseif ($result instanceof ProcessResult) {
+            return $result;
+        } elseif ($result instanceof FakeProcessResult) {
+            return $result->withCommand($command);
+        } elseif ($result instanceof FakeProcessDescription) {
+            return $result->toProcessResult($command);
+        } elseif ($result instanceof FakeProcessSequence) {
+            return $this->resolveSynchronousFake($command, fn () => $result());
         }
 
-        return match (true) {
-            $result instanceof ProcessResult => $result,
-            $result instanceof FakeProcessResult => $result->withCommand($command),
-            $result instanceof FakeProcessDescription => $result->toProcessResult($command),
-            $result instanceof FakeProcessSequence => $this->resolveSynchronousFake($command, fn () => $result()),
-            default => throw new LogicException('Unsupported synchronous process fake result provided.'),
-        };
+        throw new LogicException('Unsupported synchronous process fake result provided.');
     }
 
     /**

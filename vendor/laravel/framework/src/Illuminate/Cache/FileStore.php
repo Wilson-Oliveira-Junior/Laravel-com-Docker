@@ -338,7 +338,7 @@ class FileStore implements Store, LockProvider
      * @param  string  $key
      * @return string
      */
-    public function path($key)
+    protected function path($key)
     {
         $parts = array_slice(str_split($hash = sha1($key), 2), 0, 2);
 

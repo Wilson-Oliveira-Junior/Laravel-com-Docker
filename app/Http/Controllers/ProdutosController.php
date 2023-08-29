@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class ProdutosController extends Controller
 {
-    private $produto;
     public function __construct(Produto $produto)
     {
         $this->produto = $produto;
