@@ -96,5 +96,4 @@ php artisan key:generate
 Acesse o projeto
 [http://localhost:8989](http://localhost:8989)
 
-
-github: https://github.com/VictorPadovan1997/setup-docker-laravel-10
+Email template  https://github.com/leemunroe/responsive-html-email-template/blob/master/email-inlined.html
