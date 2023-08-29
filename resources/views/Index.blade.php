@@ -22,7 +22,6 @@
     <link rel="mask-icon" href="{{ asset('icones/safari-pinned-tab.svg') }}" color="#712cf9">
     <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
-
     <meta name="theme-color" content="#712cf9">
 
 
@@ -125,28 +124,30 @@
             @include('components.navegacao')
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 @yield('content')
-            </main>
+                {{-- <canvas class="my-4 w-100" id="myChart" width="1537" height="649" style="display: block; box-sizing: border-box; height: 649px; width: 1537px;"></canvas> --}}
+        </main>
         </div>
     </div>
 
     @yield('scripts')
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="/js/bootstrap.blundle.min.js"></script>
+    {{-- JQuery Imports --}}
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>    
+
+    <script src="{{asset('js/bootstrap.blundle.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
-    <script src="/js/dashboard.js"></script>
-    <script src="/js/color-modes.js"></script>
+    <script src="{{asset('js/dashboard.js')}}"></script>
+    <script src="{{asset('js/color-modes.js')}}"></script>
+
     {{-- InputMask --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-
     {{-- BlocUI loading --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
 
-    <script src="/js/projeto.js"></script>
+    {{-- meus scripts --}}
+    <script src="{{ asset('js/projeto.js') }}"></script>
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
     {!! Toastr::message() !!}
-
 
 </body>
 

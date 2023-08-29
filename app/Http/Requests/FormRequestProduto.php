@@ -11,16 +11,15 @@ class FormRequestProduto extends FormRequest
         return true;
     }
 
-
     public function rules(): array
     {
-        $request = [];
-        if ($this->method() == "POST" || $this->method() == "PUT") {
-            $request = [
-                'nome' => 'required',
-                'valor' => 'required'
-            ];
+        $req = [];
+        if($this->method() == 'POST' || $this->method() == 'PUT'){
+            $req = [
+               'nome' => 'required',
+               'valor' => 'required',
+           ];
         }
-        return $request;
+        return $req;
     }
 }

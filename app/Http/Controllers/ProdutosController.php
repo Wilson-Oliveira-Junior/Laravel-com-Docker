@@ -10,59 +10,57 @@ use Illuminate\Http\Request;
 
 class ProdutosController extends Controller
 {
-    public function __construct(Produto $produto)
-    {
+    private $produto;
+
+    public function __construct(Produto $produto){
         $this->produto = $produto;
     }
-
-    public function index(Request $request)
-    {
+    public function index(Request $request){
+        
         $pesquisar = $request->pesquisar;
         $findProduto = $this->produto->getProdutosPesquisarIndex(search: $pesquisar ?? '');
 
         return view('pages.produtos.paginacao', compact('findProduto'));
     }
 
-    public function delete(Request $request)
-    {
+    public function delete(Request $request){
+        
         $id = $request->id;
         $buscaRegistro = Produto::find($id);
         $buscaRegistro->delete();
 
-        return response()->json(['success' => true]);
+        return response()->json(['success'=>true]);
     }
 
-    public function cadastrarProduto(FormRequestProduto $request)
-    {
-        if ($request->method() == "POST") {
-            // cria os dados
+    public function cadastrarProduto(FormRequestProduto $request){
+        if($request->method() == 'POST'){
             $data = $request->all();
             $componentes = new Componentes();
+            
             $data['valor'] = $componentes->formatacaoMascaraDinheiroDecimal($data['valor']);
             Produto::create($data);
 
-            Toastr::success('Dados gravados com sucesso.');
+            Toastr::success('Gravado com sucesso');
             return redirect()->route('produto.index');
         }
-        // mostrar os dados
         return view('pages.produtos.create');
     }
 
-    public function atualizarProduto(FormRequestProduto $request, $id)
-    {
-        if ($request->method() == "PUT") {
-            // atualiza os dados
-            $data = $request->all();
-            $componentes = new Componentes();
-            $data['valor'] = $componentes->formatacaoMascaraDinheiroDecimal($data['valor']);
-            $buscaRegistro = Produto::find($id);
-            $buscaRegistro->update($data);
+    
+    public function atualizarProduto(FormRequestProduto $request, $id){
+        $findProduto = Produto::find($id);
 
-            Toastr::success('Dados atualizados com sucesso.');
+        if($request->method() == 'PUT'){
+            $componentes = new Componentes();
+
+            $data = $request->all();
+            $data['valor'] = $componentes->formatacaoMascaraDinheiroDecimal($data['valor']);
+            
+            $findProduto->update($data);
+
             return redirect()->route('produto.index');
         }
-        $findProduto = Produto::where('id', '=', $id)->first();
-
+        
         return view('pages.produtos.atualiza', compact('findProduto'));
     }
 }

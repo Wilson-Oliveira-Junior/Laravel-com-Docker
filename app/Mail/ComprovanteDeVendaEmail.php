@@ -13,21 +13,20 @@ class ComprovanteDeVendaEmail extends Mailable
 {
     use Queueable, SerializesModels;
     public $mailData;
-
-    public function __construct($mailData)
-    {
+    public function __construct($mailData){
         $this->mailData = $mailData;
     }
-
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Comprovante De Venda',
+            subject: 'Comprovante De Venda Email',
         );
     }
 
-
+    /**
+     * Get the message content definition.
+     */
     public function content(): Content
     {
         return new Content(
@@ -35,6 +34,11 @@ class ComprovanteDeVendaEmail extends Mailable
         );
     }
 
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     */
     public function attachments(): array
     {
         return [];
