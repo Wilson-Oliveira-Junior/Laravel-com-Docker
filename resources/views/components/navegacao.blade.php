@@ -9,7 +9,7 @@
              </li>
              <li class="nav-item">
                  <a class="nav-link" href="{{ route('vendas.index') }}">
-                     <span data-feather="file" class="align-text-bottom"></span>
+                     <span data-feather="dollar-sign" class="align-text-bottom"></span>
                      Venda
                  </a>
              </li>
@@ -25,7 +25,12 @@
                      Clientes
                  </a>
              </li>
-
+             <li class="nav-item">
+                <a class="nav-link" href="{{ route('usuario.index') }}">
+                    <span data-feather="user" class="align-text-bottom"></span>
+                    Usuario
+                </a>
+            </li>
          </ul>
      </div>
  </nav>

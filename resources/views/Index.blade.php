@@ -124,7 +124,6 @@
             @include('components.navegacao')
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 @yield('content')
-                {{-- <canvas class="my-4 w-100" id="myChart" width="1537" height="649" style="display: block; box-sizing: border-box; height: 649px; width: 1537px;"></canvas> --}}
         </main>
         </div>
     </div>
